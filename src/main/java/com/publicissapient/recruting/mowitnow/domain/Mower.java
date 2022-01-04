@@ -1,8 +1,8 @@
 package com.publicissapient.recruting.mowitnow.domain;
 
 public class Mower {
-    private final int y;
-    private final int x;
+    private int y;
+    private int x;
     private Orientation orientation;
 
     public Mower(int x, int y, Orientation orientation) {
@@ -30,6 +30,26 @@ public class Mower {
                 break;
             case 'D':
                 this.orientation = this.orientation.right();
+                break;
+            case 'A':
+                goForward();
+                break;
+        }
+    }
+
+    private void goForward() {
+        switch (orientation) {
+            case NORTH:
+                this.y += 1;
+                break;
+            case WEST:
+                this.x -= 1;
+                break;
+            case SOUTH:
+                this.y -= 1;
+                break;
+            case EAST:
+                this.x += 1;
                 break;
         }
     }
