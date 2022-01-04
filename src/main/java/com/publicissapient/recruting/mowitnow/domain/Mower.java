@@ -1,11 +1,22 @@
 package com.publicissapient.recruting.mowitnow.domain;
 
 public class Mower {
+    /**
+     * surface where the mower can move inside
+     */
+    private final Surface surface;
     private int y;
     private int x;
     private Orientation orientation;
 
-    public Mower(int x, int y, Orientation orientation) {
+    public Mower(Surface surface, int x, int y, Orientation orientation) throws MowerCoordinateOutOfBoundException {
+        if ( x > surface.getWidth() ) {
+            throw MowerCoordinateOutOfBoundException.outOfXException();
+        }
+        if ( y > surface.getHeight() ) {
+            throw MowerCoordinateOutOfBoundException.outOfYException();
+        }
+        this.surface = surface;
         this.x = x;
         this.y = y;
         this.orientation = orientation;
