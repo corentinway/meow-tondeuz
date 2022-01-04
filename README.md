@@ -78,7 +78,7 @@ Voici les *user story* à réaliser dont l'ordre de priorité est :
 Etant données un fichier dont la 1er ligne contient 2 entiers X et Y strictement positifs
 Etant données que le séparateur entre ces 2 entiers est un espace
 Quand cette première ligne du fichier d'instruction est lu
-Alors une surface de largeur X et de hauteur Y est créé.
+Alors une surface de largeur X et de hauteur Y est créée.
 ```
 
 Add surface definition validation
