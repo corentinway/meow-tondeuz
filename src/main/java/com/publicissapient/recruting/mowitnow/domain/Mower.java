@@ -10,16 +10,20 @@ public class Mower {
     private Orientation orientation;
 
     public Mower(Surface surface, int x, int y, Orientation orientation) throws MowerCoordinateOutOfBoundException {
-        if ( x > surface.getWidth() ) {
-            throw MowerCoordinateOutOfBoundException.outOfXException();
-        }
-        if ( y > surface.getHeight() ) {
-            throw MowerCoordinateOutOfBoundException.outOfYException();
-        }
+        validateMowerPosition(surface, x, y);
         this.surface = surface;
         this.x = x;
         this.y = y;
         this.orientation = orientation;
+    }
+
+    private void validateMowerPosition(Surface surface, int x, int y) throws MowerCoordinateOutOfBoundException {
+        if (x < 0 || x > surface.getWidth()) {
+            throw MowerCoordinateOutOfBoundException.outOfXException();
+        }
+        if (y < 0 || y > surface.getHeight()) {
+            throw MowerCoordinateOutOfBoundException.outOfYException();
+        }
     }
 
     public int getX() {
