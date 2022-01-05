@@ -20,15 +20,15 @@ import static org.junit.jupiter.api.Assertions.*;
  *          AADAADADDA
  *  </pre>
  */
-public class InstructionReaderTest {
+public class FileInstructionReaderTest {
 
     private static final String INSTRUCTION_FILENAME = "./src/test/resources/instructions.txt";
 
-    private InstructionReader sut;
+    private FileInstructionReader sut;
 
     @BeforeEach
     public void setUpInstructionReader() {
-        sut = new InstructionReader(INSTRUCTION_FILENAME);
+        sut = new FileInstructionReader(INSTRUCTION_FILENAME);
     }
 
     @Test
@@ -36,7 +36,7 @@ public class InstructionReaderTest {
         // GIVEN
         final String notExistingFileName = "I don't exists";
         // WHEN
-        final IllegalArgumentException actualException = assertThrows(IllegalArgumentException.class, () -> new InstructionReader(notExistingFileName));
+        final IllegalArgumentException actualException = assertThrows(IllegalArgumentException.class, () -> new FileInstructionReader(notExistingFileName));
         // THEN
         assertEquals("Invalid file", actualException.getMessage());
         assertTrue(actualException.getCause() instanceof IOException);
@@ -88,7 +88,7 @@ public class InstructionReaderTest {
     })
     public void should_throw_IllegalInstructionException_given_invalid_X_initial_mower_position(String instructionFile, String expectedMessage, String causeExceptionName) {
         // GIVEN
-        final InstructionReader reader = new InstructionReader("src/test/resources/" + instructionFile);
+        final FileInstructionReader reader = new FileInstructionReader("src/test/resources/" + instructionFile);
         // WHEN
         final IllegalInstructionException actualException = assertThrows(IllegalInstructionException.class, () -> reader.read());
         // THEN
