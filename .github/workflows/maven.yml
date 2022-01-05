@@ -29,5 +29,5 @@ jobs:
       # uses: codecov/codecov-action@f32b3a3741e1053eb607407145bc9619351dc93b
       uses: codecov/codecov-action@v2.1.0
       with:
-        token: ${{ CODECOV_TOKEN }}
+        token: ${{ secrets.CODECOV_TOKEN }}
 
