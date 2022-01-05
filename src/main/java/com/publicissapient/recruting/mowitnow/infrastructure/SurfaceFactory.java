@@ -7,14 +7,17 @@ import java.util.regex.Pattern;
 
 public class SurfaceFactory {
 
+    private SurfaceFactory() {
+    }
+
     private static final Predicate<String> VALID_LINE_PREDICATE = Pattern.compile("^\\p{Digit}+ \\p{Digit}+$").asPredicate();
 
     public static Surface create(String line) {
         if (line.isEmpty()) {
             throw new IllegalArgumentException("surface definition should not be empty");
         }
-        boolean lineNotValide = !VALID_LINE_PREDICATE.test(line);
-        if (lineNotValide) {
+        boolean lineNotValid = !VALID_LINE_PREDICATE.test(line);
+        if (lineNotValid) {
             throw new IllegalArgumentException("surface definition does not match the pattern 'digit digit'");
         }
         final String[] parts = line.split(" ");

@@ -123,7 +123,10 @@ Alors la tondeuse se déplace selon les instructions données dans la surface
 ```
 
 
-**Attention** : on ne va pas vérifier ici que si la tondeuse sort de la surface en avançant trop loin.
+**Attention** : on ne va pas vérifier ici que si la tondeuse sort 
+de la surface en avançant trop loin.
+On pourrait lancer l'exception `MowerCoordinateOutOfBoundException` si
+la tondeuse sort de la surface
 
 
 
