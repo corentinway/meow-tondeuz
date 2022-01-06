@@ -24,7 +24,6 @@ public abstract class InstructionReader {
         List<Instruction.MowerAction> mowersActions = new ArrayList<>();
 
         while (lineIterator.hasNext()) {
-            // TODO in case a mower position not the matching number of line
             line = lineIterator.next();
             ++lineIndex;
             final Mower mower = MowerFactory.readMower(surface, line, lineIndex);

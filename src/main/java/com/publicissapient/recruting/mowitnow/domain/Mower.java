@@ -4,14 +4,12 @@ public class Mower {
     /**
      * surface where the mower can move inside
      */
-    private final Surface surface;
     private int y;
     private int x;
     private Orientation orientation;
 
     public Mower(Surface surface, int x, int y, Orientation orientation) throws MowerCoordinateOutOfBoundException {
         validateMowerPosition(surface, x, y);
-        this.surface = surface;
         this.x = x;
         this.y = y;
         this.orientation = orientation;
@@ -39,6 +37,11 @@ public class Mower {
     }
 
     public void move(char action) {
+        /*
+        we could use Enum to represent actions.
+        I choose `char` type because it is
+        lighter in the VM and managed in the stack
+         */
         switch (action) {
             case 'G':
                 this.orientation = this.orientation.left();
@@ -48,6 +51,9 @@ public class Mower {
                 break;
             case 'A':
                 goForward();
+                break;
+            default:
+                // ignore action that don't match expected values : 'G', 'D', 'A'
                 break;
         }
     }

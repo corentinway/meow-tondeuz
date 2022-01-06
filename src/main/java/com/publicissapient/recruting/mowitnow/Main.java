@@ -6,7 +6,7 @@ import com.publicissapient.recruting.mowitnow.infrastructure.FileInstructionRead
 import com.publicissapient.recruting.mowitnow.infrastructure.InstructionReader;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalInstructionException {
         final String instructionFileName = args[0];
 
         // setup context

@@ -14,13 +14,13 @@ import static com.publicissapient.recruting.mowitnow.domain.Orientation.SOUTH;
 import static com.publicissapient.recruting.mowitnow.domain.Orientation.WEST;
 import static com.publicissapient.recruting.mowitnow.domain.Orientation.EAST;
 
-public class MowerTest {
+class MowerTest {
 
     private static final Surface SURFACE = new Surface(5, 5);
 
 
     @Test
-    public void should_create_a_mower_given_x_and_y_coordinates_and_an_orientation() throws MowerCoordinateOutOfBoundException {
+    void should_create_a_mower_given_x_and_y_coordinates_and_an_orientation() throws MowerCoordinateOutOfBoundException {
         // GIVEN
         final int x = 2;
         final int y = 3;
@@ -34,7 +34,7 @@ public class MowerTest {
 
     @ParameterizedTest
     @MethodSource("provideArgumentsForOutOfSurfaceTest")
-    public void should_throw_exception_given_mower_position_created_out_of_the_surface(int x, int y, Orientation orientation, String expectedMessage) {
+    void should_throw_exception_given_mower_position_created_out_of_the_surface(int x, int y, Orientation orientation, String expectedMessage) {
         // WHEN
         final MowerCoordinateOutOfBoundException actualException = assertThrows(MowerCoordinateOutOfBoundException.class,
                 () -> new Mower(SURFACE, x, y, orientation));
@@ -61,7 +61,7 @@ public class MowerTest {
     }
 
     @Test
-    public void should_move_a_mower_leftward() throws MowerCoordinateOutOfBoundException {
+    void should_move_a_mower_leftward() throws MowerCoordinateOutOfBoundException {
         // GIVEN
         final int x = 2;
         final int y = 3;
@@ -94,7 +94,7 @@ public class MowerTest {
     }
 
     @Test
-    public void should_move_a_mower_rightward() throws MowerCoordinateOutOfBoundException {
+    void should_move_a_mower_rightward() throws MowerCoordinateOutOfBoundException {
         // GIVEN
         final int x = 2;
         final int y = 3;
@@ -129,7 +129,7 @@ public class MowerTest {
 
     @ParameterizedTest
     @MethodSource("provideArgumentsForMoveForwardsTest")
-    public void should_move_the_mower_forward(int x, int y, Orientation orientation,
+    void should_move_the_mower_forward(int x, int y, Orientation orientation,
                                               int expectedX, int expectedY, Orientation expectedOrientation) throws MowerCoordinateOutOfBoundException {
         // GIVEN
         final Mower actualMower = new Mower(SURFACE, x, y, orientation);
@@ -154,7 +154,7 @@ public class MowerTest {
 
 
     @Test
-    public void should_move_to_1_3_N_given_the_initial_position_1_2_N_and_the_moves_GAGAGAGAA() throws MowerCoordinateOutOfBoundException {
+    void should_move_to_1_3_N_given_the_initial_position_1_2_N_and_the_moves_GAGAGAGAA() throws MowerCoordinateOutOfBoundException {
         // GIVEN
         final int x = 1;
         final int y = 2;
@@ -169,7 +169,7 @@ public class MowerTest {
     }
 
     @Test
-    public void should_move_to_5_1_E_given_the_initial_position_3_3_E_and_the_moves_AADAADADDA() throws MowerCoordinateOutOfBoundException {
+    void should_move_to_5_1_E_given_the_initial_position_3_3_E_and_the_moves_AADAADADDA() throws MowerCoordinateOutOfBoundException {
         // GIVEN
         final int x = 3;
         final int y = 3;
@@ -180,6 +180,21 @@ public class MowerTest {
         actions.chars().forEach(action -> mower.move((char) action));
         // THEN
         assertMowerPosition(mower, 5, 1);
+        assertEquals(EAST, mower.getOrientation());
+    }
+
+    @Test
+    void should_ignore_a_mower_action_given_an_action_not_managed() throws MowerCoordinateOutOfBoundException {
+        // GIVEN
+        final int x = 3;
+        final int y = 3;
+        final Orientation orientation = EAST;
+        final Mower mower = new Mower(SURFACE, x, y, orientation);
+        final char action = 'p';
+        // WHEN
+        mower.move(action);
+        // THEN
+        assertMowerPosition(mower, 3, 3);
         assertEquals(EAST, mower.getOrientation());
     }
 }

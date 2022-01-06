@@ -1,7 +1,6 @@
 package com.publicissapient.recruting.mowitnow.domain;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Instruction {
@@ -9,8 +8,8 @@ public class Instruction {
     private final List<MowerAction> mowersAndActions;
 
     public static class MowerAction {
-        private Mower mower;
-        private String actions;
+        private final Mower mower;
+        private final String actions;
 
         public MowerAction(Mower mower, String actions) {
             this.mower = mower;
@@ -30,10 +29,7 @@ public class Instruction {
 
     public void execute() {
         mowersAndActions
-                .stream()
-                .forEach(mowerAction -> {
-                    mowerAction.actions.chars()
-                            .forEach(action -> mowerAction.mower.move((char) action));
-                });
+                .forEach(mowerAction -> mowerAction.actions.chars()
+                        .forEach(action -> mowerAction.mower.move((char) action)));
     }
 }
