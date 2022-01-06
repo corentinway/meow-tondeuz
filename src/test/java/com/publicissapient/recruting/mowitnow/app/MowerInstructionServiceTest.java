@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MowerInstructionServiceTest {
+class MowerInstructionServiceTest {
 
     private MowerInstructionService sut;
 
@@ -28,12 +28,12 @@ public class MowerInstructionServiceTest {
     }
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         sut = new MowerInstructionService(new StringsInstructionReader());
     }
 
     @Test
-    public void should_move_the_mower_to_the_target_position() throws IllegalInstructionException {
+    void should_move_the_mower_to_the_target_position() throws IllegalInstructionException {
         // WHEN
         final String targetPosition = sut.mowTheSurface();
         // THEN

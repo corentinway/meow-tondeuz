@@ -16,7 +16,7 @@ public abstract class InstructionReader {
 
     protected abstract Iterator<String> buildInstructionIterator();
 
-    protected Instruction read(Iterator<String> lineIterator) throws IllegalInstructionException {
+    private Instruction read(Iterator<String> lineIterator) throws IllegalInstructionException {
         int lineIndex = 0;
         String line = lineIterator.next();
         final Surface surface = SurfaceFactory.create(line);

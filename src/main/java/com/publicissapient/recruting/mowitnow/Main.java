@@ -7,13 +7,16 @@ import com.publicissapient.recruting.mowitnow.infrastructure.InstructionReader;
 
 public class Main {
     public static void main(String[] args) throws IllegalInstructionException {
+        if (args.length != 1) {
+            throw new IllegalArgumentException("Expecting the file name at the 1st argument");
+        }
         final String instructionFileName = args[0];
 
         // setup context
         final InstructionReader instructionReader = new FileInstructionReader(instructionFileName);
         final MowerInstructionService mowerInstructionService = new MowerInstructionService(instructionReader);
 
-        //
+        // run
         try {
             final String targetPosition = mowerInstructionService.mowTheSurface();
             System.out.println(targetPosition);

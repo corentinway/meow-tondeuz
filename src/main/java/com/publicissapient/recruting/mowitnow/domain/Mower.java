@@ -59,6 +59,13 @@ public class Mower {
     }
 
     private void goForward() {
+        /*
+         to avoid the mower to go out of the surface we could do :
+         1. compute the next position of the mower
+         2. throw an exception or do nothing if the next position is out of the surface
+         (surface need to be a property of this class)
+         3. if the next position is in the surface, then update this.x and this.y
+         */
         switch (orientation) {
             case NORTH:
                 this.y += 1;

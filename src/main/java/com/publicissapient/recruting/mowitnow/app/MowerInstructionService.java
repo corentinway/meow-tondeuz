@@ -18,9 +18,9 @@ public class MowerInstructionService {
 
     public String mowTheSurface() throws IllegalInstructionException {
         final Instruction instruction = instructionReader.read();
-        instruction.execute();
+        final List<Mower> mowers = instruction.execute();
 
-        return formatMowerPosition(instruction.getMowers());
+        return formatMowerPosition(mowers);
 
     }
 

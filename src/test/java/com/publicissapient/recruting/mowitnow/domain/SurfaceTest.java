@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SurfaceTest {
+class SurfaceTest {
 
     @Test
-    public void should_create_a_surface_given_its_with_and_height() {
+    void should_create_a_surface_given_its_with_and_height() {
         // GIVEN
         final int width = 5;
         final int height = 5;

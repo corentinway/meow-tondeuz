@@ -6,10 +6,10 @@ import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class OrientationTest {
+class OrientationTest {
 
     @Test
-    public void should_have_for_orientations() {
+    void should_have_for_orientations() {
         assertEquals("NORTH", Orientation.NORTH.name());
         assertEquals("SOUTH", Orientation.SOUTH.name());
         assertEquals("WEST", Orientation.WEST.name());
@@ -19,7 +19,7 @@ public class OrientationTest {
     }
 
     @Test
-    public void should_return_next_left_value() {
+    void should_return_next_left_value() {
         assertEquals(Orientation.WEST, Orientation.NORTH.left());
         assertEquals(Orientation.SOUTH, Orientation.WEST.left());
         assertEquals(Orientation.EAST, Orientation.SOUTH.left());
@@ -27,7 +27,7 @@ public class OrientationTest {
     }
 
     @Test
-    public void should_return_next_right_value() {
+    void should_return_next_right_value() {
         assertEquals(Orientation.EAST, Orientation.NORTH.right());
         assertEquals(Orientation.SOUTH, Orientation.EAST.right());
         assertEquals(Orientation.WEST, Orientation.SOUTH.right());

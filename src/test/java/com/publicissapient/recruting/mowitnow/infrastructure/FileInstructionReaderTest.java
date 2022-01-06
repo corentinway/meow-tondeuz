@@ -29,7 +29,7 @@ class FileInstructionReaderTest {
     private FileInstructionReader sut;
 
     @BeforeEach
-    public void setUpInstructionReader() throws IllegalInstructionException {
+    void setUpInstructionReader() throws IllegalInstructionException {
         sut = new FileInstructionReader(INSTRUCTION_FILENAME);
     }
 
@@ -46,24 +46,25 @@ class FileInstructionReaderTest {
 
 
     @Test
-    void should_move_the_mower_to_the_target_position() throws IllegalInstructionException {
+    void should_read_successfully_the_instruction() throws IllegalInstructionException {
         // WHEN
         final Instruction actualInstruction = sut.read();
-        actualInstruction.execute();
         // THEN
-        final List<Mower> mowers = actualInstruction.getMowers();
+        final List<Instruction.MowerAction> mowers = actualInstruction.getMowersAndActions();
 
-        Mower actualMower = mowers.get(0);
+        Mower actualMower = mowers.get(0).getMower();
         assertNotNull(actualMower);
         assertEquals(1, actualMower.getX());
-        assertEquals(3, actualMower.getY());
+        assertEquals(2, actualMower.getY());
         assertEquals(Orientation.NORTH, actualMower.getOrientation());
+        assertEquals("GAGAGAGAA", mowers.get(0).getActions());
 
-        actualMower = mowers.get(1);
+        actualMower = mowers.get(1).getMower();
         assertNotNull(actualMower);
-        assertEquals(5, actualMower.getX());
-        assertEquals(1, actualMower.getY());
+        assertEquals(3, actualMower.getX());
+        assertEquals(3, actualMower.getY());
         assertEquals(Orientation.EAST, actualMower.getOrientation());
+        assertEquals("AADAADADDA", mowers.get(1).getActions());
     }
 
     @ParameterizedTest

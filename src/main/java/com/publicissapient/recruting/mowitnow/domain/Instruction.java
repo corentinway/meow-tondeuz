@@ -15,21 +15,31 @@ public class Instruction {
             this.mower = mower;
             this.actions = actions;
         }
+
+        public Mower getMower() {
+            return mower; // todo check mutability
+        }
+
+        public String getActions() {
+            return actions; // TODO check mutability
+        }
     }
 
     public Instruction(List<MowerAction> mowersAndActions) {
         this.mowersAndActions = mowersAndActions;
     }
 
-    public List<Mower> getMowers() {
-        return mowersAndActions.stream()
-                .map(mowerAction -> mowerAction.mower)
-                .collect(Collectors.toList());
+    public List<MowerAction> getMowersAndActions() {
+        return List.copyOf(mowersAndActions); // TODO check mutability
     }
 
-    public void execute() {
+    public List<Mower> execute() {
         mowersAndActions
                 .forEach(mowerAction -> mowerAction.actions.chars()
                         .forEach(action -> mowerAction.mower.move((char) action)));
+
+        return mowersAndActions.stream()
+                .map(mowerAction -> mowerAction.mower)
+                .collect(Collectors.toList());
     }
 }
