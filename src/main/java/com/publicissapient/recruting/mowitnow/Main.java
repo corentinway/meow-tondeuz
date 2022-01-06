@@ -19,6 +19,7 @@ public class Main {
             System.out.println(targetPosition);
         } catch (IllegalInstructionException e) {
             // may be enhance
+            // log error should be great
             System.err.println("Error when mowing the surface : " + e.getMessage() );
         }
     }
