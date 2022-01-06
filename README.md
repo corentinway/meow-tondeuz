@@ -1,4 +1,6 @@
 
+[![codecov](https://codecov.io/gh/corentinway/meow-tondeuz/branch/dev/graph/badge.svg?token=TWQMMK9KYT)](https://codecov.io/gh/corentinway/meow-tondeuz)
+
 # Contexte
 
 ## Exercice de développement - La tondeuse
