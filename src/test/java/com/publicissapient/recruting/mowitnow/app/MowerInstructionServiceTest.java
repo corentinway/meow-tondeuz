@@ -1,4 +1,4 @@
-package com.publicissapient.recruting.mowitnow;
+package com.publicissapient.recruting.mowitnow.app;
 
 import com.publicissapient.recruting.mowitnow.app.MowerInstructionService;
 import com.publicissapient.recruting.mowitnow.domain.IllegalInstructionException;
