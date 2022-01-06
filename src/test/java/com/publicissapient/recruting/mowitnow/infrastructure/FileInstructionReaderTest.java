@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.io.IOException;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -49,11 +50,20 @@ public class FileInstructionReaderTest {
         final Instruction actualInstruction = sut.read();
         actualInstruction.execute();
         // THEN
-        final Mower actualMower = actualInstruction.getMower();
+        final List<Mower> mowers = actualInstruction.getMowers();
+
+        Mower actualMower = mowers.get(0);
         assertNotNull(actualMower);
         assertEquals(1, actualMower.getX());
         assertEquals(3, actualMower.getY());
         assertEquals(Orientation.NORTH, actualMower.getOrientation());
+
+        actualMower = mowers.get(1);
+        assertNotNull(actualMower);
+        assertEquals(5, actualMower.getX());
+        assertEquals(1, actualMower.getY());
+        assertEquals(Orientation.EAST, actualMower.getOrientation());
+
 
     }
 

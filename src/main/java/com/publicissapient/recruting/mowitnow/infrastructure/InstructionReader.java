@@ -2,7 +2,9 @@ package com.publicissapient.recruting.mowitnow.infrastructure;
 
 import com.publicissapient.recruting.mowitnow.domain.*;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public abstract class InstructionReader {
 
@@ -19,17 +21,23 @@ public abstract class InstructionReader {
         String line = lineIterator.next();
         final Surface surface = SurfaceFactory.create(line);
 
-        line = lineIterator.next();
-        ++lineIndex;
-        final Mower mower = MowerFactory.readMower(surface, line, lineIndex);
+        List<Instruction.MowerAction> mowersActions = new ArrayList<>();
 
-        line = lineIterator.next();
-        ++lineIndex;
-        final String mowerAction = line.trim();
+        while (lineIterator.hasNext()) {
+            // TODO in case a mower position not the matching number of line
+            line = lineIterator.next();
+            ++lineIndex;
+            final Mower mower = MowerFactory.readMower(surface, line, lineIndex);
 
-        return new Instruction(mower, mowerAction);
+            line = lineIterator.next();
+            ++lineIndex;
+            final String mowerAction = line.trim();
+
+            mowersActions.add(new Instruction.MowerAction(mower, mowerAction));
+        }
+
+        return new Instruction(mowersActions);
     }
-
 
 
 }

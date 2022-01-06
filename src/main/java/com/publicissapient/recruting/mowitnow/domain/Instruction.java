@@ -1,22 +1,39 @@
 package com.publicissapient.recruting.mowitnow.domain;
 
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 public class Instruction {
 
-    private final Mower mower;
-    private String mowerAction;
+    private final List<MowerAction> mowersAndActions;
 
-    public Instruction(Mower mower, String mowerAction) {
-        this.mower = mower;
-        this.mowerAction = mowerAction;
+    public static class MowerAction {
+        private Mower mower;
+        private String actions;
+
+        public MowerAction(Mower mower, String actions) {
+            this.mower = mower;
+            this.actions = actions;
+        }
     }
 
+    public Instruction(List<MowerAction> mowersAndActions) {
+        this.mowersAndActions = mowersAndActions;
+    }
 
-    public Mower getMower() {
-        return mower;
+    public List<Mower> getMowers() {
+        return mowersAndActions.stream()
+                .map(mowerAction -> mowerAction.mower)
+                .collect(Collectors.toList());
     }
 
     public void execute() {
-        mowerAction.chars()
-                .forEach(action -> mower.move((char) action));
+        mowersAndActions
+                .stream()
+                .forEach(mowerAction -> {
+                    mowerAction.actions.chars()
+                            .forEach(action -> mowerAction.mower.move((char) action));
+                });
     }
 }
