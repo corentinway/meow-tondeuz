@@ -22,7 +22,7 @@ public class FileInstructionReader extends InstructionReader {
 
 
     @Override
-    public Instruction read() throws IllegalInstructionException {
-        return super.read(lineIterator);
+    protected Iterator<String> buildInstructionIterator() {
+        return lineIterator;
     }
 }

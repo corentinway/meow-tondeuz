@@ -7,9 +7,14 @@ import java.util.Iterator;
 public abstract class InstructionReader {
 
 
-    public abstract Instruction read() throws IllegalInstructionException;
+    public Instruction read() throws IllegalInstructionException {
+        final Iterator<String> instructionIterator = buildInstructionIterator();
+        return read(instructionIterator);
+    }
 
-    public Instruction read(Iterator<String> lineIterator) throws IllegalInstructionException {
+    protected abstract Iterator<String> buildInstructionIterator();
+
+    protected Instruction read(Iterator<String> lineIterator) throws IllegalInstructionException {
         int lineIndex = 0;
         String line = lineIterator.next();
         final Surface surface = SurfaceFactory.create(line);
